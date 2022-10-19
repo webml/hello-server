@@ -34,10 +34,17 @@ const server = http.createServer((request, response) => {
     return;
   }
 
-  response.statusCode = 200;
-  response.statusMessage = "OK";
-  response.setHeader("Content-Type", "text/plain");
-  response.write("Hello World");
+  if (url.search === "") {
+    response.statusCode = 200;
+    response.statusMessage = "OK";
+    response.setHeader("Content-Type", "text/plain");
+    response.write("Hello World");
+    response.end();
+    return;
+  }
+
+  response.statusCode = 500;
+  response.statusMessage = "Error";
   response.end();
 
   // Написать обработчик запроса:
